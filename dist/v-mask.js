@@ -343,7 +343,7 @@
     }
 
     function partiallyUpdate(el, newOptions) {
-      elementOptions.set(el, _objectSpread2({}, get(el), {}, newOptions));
+      elementOptions.set(el, _objectSpread2(_objectSpread2({}, get(el)), newOptions));
     }
 
     function remove(el) {
@@ -357,10 +357,38 @@
     };
   }
 
+  function unmask (text, wholeMask) {
+    for (var maskIndex = 0; maskIndex < wholeMask.length; maskIndex += 1) {
+      var maskChar = wholeMask.charAt(maskIndex);
+
+      switch (maskChar) {
+        case "#":
+          break;
+
+        case "A":
+          break;
+
+        case "?":
+          break;
+
+        case "N":
+          break;
+
+        case "X":
+          break;
+
+        default:
+          text = text.replace(maskChar, "");
+      }
+    }
+
+    return text;
+  }
+
   var options = createOptions();
 
   function triggerInputUpdate(el) {
-    var fn = trigger.bind(null, el, 'input');
+    var fn = trigger.bind(null, el, "input");
 
     if (isAndroid && isChrome) {
       setTimeout(fn, 0);
@@ -375,7 +403,8 @@
 
     var _options$get = options.get(el),
         previousValue = _options$get.previousValue,
-        mask = _options$get.mask;
+        mask = _options$get.mask,
+        rawMask = _options$get.rawMask;
 
     var isValueChanged = value !== previousValue;
     var isLengthIncreased = value.length > previousValue.length;
@@ -388,6 +417,7 @@
           conformedValue = _conformToMask.conformedValue;
 
       el.value = conformedValue;
+      el.dataset.unmasked = unmask(conformedValue, rawMask);
       triggerInputUpdate(el);
     }
 
@@ -398,7 +428,8 @@
 
   function updateMask(el, mask) {
     options.partiallyUpdate(el, {
-      mask: stringMaskToRegExpMask(mask)
+      mask: stringMaskToRegExpMask(mask),
+      rawMask: mask
     });
   }
 
