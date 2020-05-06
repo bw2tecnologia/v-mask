@@ -1,5 +1,5 @@
 {
-  "name": "v-mask",
+  "name": "@bw2tecnologia/v-mask",
   "version": "2.1.0",
   "description": "Tiny input mask library for Vue.js based on text-mask-core (~4kb) exposed as directive. No dependencies",
   "main": "dist/v-mask.js",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/probil/v-mask.git"
+    "url": "git+https://github.com/bw2tecnologia/v-mask.git"
   },
   "keywords": [
     "vue.js",
@@ -28,9 +28,9 @@
   "author": "Max Lyashuk <m_lyashuk@ukr.net>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/probil/v-mask/issues"
+    "url": "https://github.com/bw2tecnologia/v-mask/issues"
   },
-  "homepage": "https://github.com/probil/v-mask#readme",
+  "homepage": "https://github.com/bw2tecnologia/v-mask#readme",
   "devDependencies": {
     "@babel/core": "7.9.6",
     "@babel/preset-env": "7.9.6",
