@@ -401,7 +401,7 @@ function updateValue(el) {
       rawMask = _options$get.rawMask;
 
   var isValueChanged = value !== previousValue;
-  var isLengthIncreased = value.length > previousValue.length;
+  var isLengthIncreased = value.length !== previousValue.length;
   var isUpdateNeeded = value && isValueChanged && isLengthIncreased;
 
   if (force || isUpdateNeeded) {
