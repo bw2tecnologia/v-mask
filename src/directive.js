@@ -27,18 +27,19 @@ function updateValue(el, force = false) {
   const { value } = el;
   const { previousValue, mask, rawMask } = options.get(el);
 
-  const isValueChanged = value !== previousValue;
-  const isLengthIncreased = value.length !== previousValue.length;
-  const isUpdateNeeded = value && isValueChanged && isLengthIncreased;
+  const isLengthChanged = value.length !== previousValue.length;
+  const isUpdateNeeded = isLengthChanged;
+
+  const val = value.length ? value : "";
 
   if (force || isUpdateNeeded) {
-    const { conformedValue } = conformToMask(value, mask, { guide: false });
+    const { conformedValue } = conformToMask(val, mask, { guide: false });
     el.value = conformedValue;
     el.dataset.unmasked = unmask(conformedValue, rawMask);
     triggerInputUpdate(el);
   }
 
-  options.partiallyUpdate(el, { previousValue: value });
+  options.partiallyUpdate(el, { previousValue: val });
 }
 
 /**

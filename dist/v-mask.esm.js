@@ -400,12 +400,12 @@ function updateValue(el) {
       mask = _options$get.mask,
       rawMask = _options$get.rawMask;
 
-  var isValueChanged = value !== previousValue;
-  var isLengthIncreased = value.length !== previousValue.length;
-  var isUpdateNeeded = value && isValueChanged && isLengthIncreased;
+  var isLengthChanged = value.length !== previousValue.length;
+  var isUpdateNeeded = isLengthChanged;
+  var val = value.length ? value : "";
 
   if (force || isUpdateNeeded) {
-    var _conformToMask = conformToMask(value, mask, {
+    var _conformToMask = conformToMask(val, mask, {
       guide: false
     }),
         conformedValue = _conformToMask.conformedValue;
@@ -416,7 +416,7 @@ function updateValue(el) {
   }
 
   options.partiallyUpdate(el, {
-    previousValue: value
+    previousValue: val
   });
 }
 
